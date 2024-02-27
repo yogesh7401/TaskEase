@@ -1,16 +1,40 @@
-export default function TaskMenu() {
-
-    const menuItem = "text-gray-600 mb-2 py-2 px-4 rounded-xl cursor-pointer"
+/* eslint-disable react/prop-types */
+export default function TaskMenu(props) {
+    const menuClass = "text-gray-600 py-2 px-4 rounded-lg cursor-pointer"
+    const activeMenu = "bg-secondary-light text-light"
+    const hoverMenu = " hover:text-gray-900 hover:bg-light"
+    const menuItems = [
+        {
+            name : "New task",
+            key  : "New"
+        },
+        {
+            name : "All tasks",
+            key  : "All"
+        },
+        {
+            name : "Important tasks",
+            key  : "Important"
+        }
+    ]
     
-    return <div className="flex-none w-full md:max-w-60">
-    <ul className="text-xl flex-col">
-        <li className={menuItem+" bg-secondary-light text-white"}>New task</li>
-        <li className={menuItem+" hover:text-gray-900"}>All tasks</li>
-        <li className={menuItem+" hover:text-gray-900"}>Stared</li>
+    return <div className="flex-none w-full md:max-w-44">
+    <ul className="text-lg flex-col">
+        {
+            menuItems.map(menuItem => {
+                return <li 
+                    className={`${menuClass} ${ props.selectedItem === menuItem.key ? activeMenu : hoverMenu }`}
+                    onClick={() => props.setSelectedItem(menuItem.key)}
+                    key={menuItem.key}
+                    >
+                    { menuItem.name }
+                </li>
+            })
+        }
     </ul>
     <hr className="h-px my-8 border-0 bg-gray-200"/>
-    <ul className="text-xl flex-col">
-        <li className={menuItem}>Tasks</li>
+    <ul className="text-lg flex-col">
+        <li className={`${menuClass} ${ props.selectedItem === "Task1" ? activeMenu : hoverMenu }`}>Tasks</li>
     </ul>
 </div>
 }
