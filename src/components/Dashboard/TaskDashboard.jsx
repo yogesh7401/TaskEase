@@ -1,10 +1,11 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import NewTask from "../Tasks/NewTask";
 import AllTask from "../Tasks/AllTask";
 import TaskMenu from "../Tasks/TaskMenu";
 import ImportantTask from "../Tasks/ImportantTask";
 
-export default function TaskDashboard() {
+export default function TaskDashboard(props) {
 
   const [ selectedItem, setSelectedItem ] = useState("New")
 
@@ -23,7 +24,7 @@ export default function TaskDashboard() {
   }
 
   return <div className="container pt-10 mx-auto md:flex">
-    <TaskMenu selectedItem={selectedItem} setSelectedItem={setSelectedItem} />
+    <TaskMenu  toggle={props.toggle} setToggle={props.setToggle} selectedItem={selectedItem} setSelectedItem={setSelectedItem} />
     <div className="flex-1 mb-10">
       {
         renderPage(selectedItem)

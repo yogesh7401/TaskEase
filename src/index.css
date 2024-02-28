@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
 .required:after {
     content:" *";
     color: red;
@@ -25,4 +31,13 @@
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #dda15e;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+.animate-spin {
+    animation: spin 3s linear infinite;
 }

@@ -11,6 +11,7 @@ export default function NewTask() {
         "dueDate": ""
     }
     const [ newTask, setNewTask ] = useState(defaultValue)
+    const [ errorMessage, setErrorMessage ] = useState("")
 
     const labelClass = "text-primary-light text-sm"
     const inputClass = "p-2 w-full rounded-md focus:outline-none"
@@ -26,22 +27,50 @@ export default function NewTask() {
 
     function handleSubmit(e) {
         e.preventDefault()
+        console.log(newTask);
+        let startDate = Timestamp.fromDate(new Date(newTask.startDate+"T12:00:00"))
+        let dueDate = Timestamp.fromDate(new Date(newTask.dueDate+"T12:00:00"))
+        if (newTask.taskName.length < 3) {
+            setErrorMessage("Task name should have more the 3 character!")
+            return false
+        }
+        else if (newTask.taskDescription.length < 10) {
+            setErrorMessage("Task description should have more the 10 character!")
+            return false
+        }
+        else if (newTask.isImportant === "") {
+            console.log(newTask);
+            setErrorMessage("Invalid value for feild Important!")
+            return false
+        }
+        else if (newTask.startDate === "") {
+            setErrorMessage("Please enter the start date!")
+            return false
+        }
+        else if (new Date(newTask.dueDate) < new Date(newTask.startDate)) {
+            setErrorMessage("Due date should be later than start date!")
+            return false
+        }
+        else {
+            setErrorMessage("")
+        }
+        
         addDoc(collection(db, "TaskList"), { 
+            ...newTask,
             createdDateTime: Timestamp.now(), 
-            startDate: Timestamp.fromDate(new Date(newTask.startDate)),
-            dueDate: newTask.dueDate !== "" ? Timestamp.fromDate(new Date(newTask.dueDate)) : Timestamp.fromDate(new Date(newTask.startDate)),
+            startDate: startDate,
+            dueDate: newTask.dueDate !== "" ? dueDate : startDate,
             isImportant: newTask.isImportant === "true",
-            ...newTask
         })
-        .then(e => {
-            console.log(e);
+        .then(() => {
             alert("Task added successfully")
         })
         setNewTask(defaultValue)
     }
 
-    return <div className="h-full bg-light p-5 px-10 mx-5 lg:mx-10">
+    return <div className="h-full bg-light p-5 sm:px-10 mx-3 sm:mx-5 lg:mx-10 shadow-md">
         <p className="text-primary font-bold text-3xl">Add new task</p>
+        <small className="text-red-500">{ errorMessage }</small>
         <form className="grid grid-cols-2 gap-5 my-5 text-gray-600" onSubmit={(e) => handleSubmit(e)}>
             <div>
                 <label className={`${labelClass} required`} htmlFor="taskTitle">
