@@ -1,6 +1,7 @@
 import { Timestamp, addDoc, collection } from "firebase/firestore"
 import { useState } from "react"
 import { db } from "../../../firebase"
+import { useAuth } from "../Authentication/AuthProvider"
 
 export default function NewTask() {
     const defaultValue = {
@@ -12,6 +13,8 @@ export default function NewTask() {
     }
     const [ newTask, setNewTask ] = useState(defaultValue)
     const [ errorMessage, setErrorMessage ] = useState("")
+
+    const { user } = useAuth()
 
     const labelClass = "text-primary-light text-sm"
     const inputClass = "p-2 w-full rounded-md focus:outline-none"
@@ -27,7 +30,6 @@ export default function NewTask() {
 
     function handleSubmit(e) {
         e.preventDefault()
-        console.log(newTask);
         let startDate = Timestamp.fromDate(new Date(newTask.startDate+"T12:00:00"))
         let dueDate = Timestamp.fromDate(new Date(newTask.dueDate+"T12:00:00"))
         if (newTask.taskName.length < 3) {
@@ -39,7 +41,6 @@ export default function NewTask() {
             return false
         }
         else if (newTask.isImportant === "") {
-            console.log(newTask);
             setErrorMessage("Invalid value for feild Important!")
             return false
         }
@@ -61,6 +62,7 @@ export default function NewTask() {
             startDate: startDate,
             dueDate: newTask.dueDate !== "" ? dueDate : startDate,
             isImportant: newTask.isImportant === "true",
+            user: user.uid
         })
         .then(() => {
             alert("Task added successfully")
@@ -71,7 +73,7 @@ export default function NewTask() {
     return <div className="h-full bg-light p-5 sm:px-10 mx-3 sm:mx-5 lg:mx-10 shadow-md">
         <p className="text-primary font-bold text-3xl">Add new task</p>
         <small className="text-red-500">{ errorMessage }</small>
-        <form className="grid grid-cols-2 gap-5 my-5 text-gray-600" onSubmit={(e) => handleSubmit(e)}>
+        <form className="grid grid-cols-2 gap-5 my-5 text-gray-600" method="POST" onSubmit={(e) => handleSubmit(e)}>
             <div>
                 <label className={`${labelClass} required`} htmlFor="taskTitle">
                     Task title

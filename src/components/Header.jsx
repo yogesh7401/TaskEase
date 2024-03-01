@@ -1,5 +1,10 @@
+import { useState } from "react"
+import { useAuth } from "./Authentication/AuthProvider"
+
 /* eslint-disable react/prop-types */
 export default function Header(props) {
+    const [ toggle, setToggle ] = useState(false)
+    const { logout } = useAuth()
     return <nav className="bg-light shadow-lg">
         <div className="flex justify-between container mx-auto p-3">
             <div className="flex">
@@ -10,14 +15,16 @@ export default function Header(props) {
                 <h3 className="text-primary text-5xl font-bold font-serif italic ml-1">Ease</h3>
             </div>
             <div className="relative my-auto">
-                <div className="w-10 h-10 bg-secondary text-light flex rounded-full cursor-pointer">
+                <div onClick={() => setToggle(!toggle)} className="w-10 h-10 bg-secondary text-light flex rounded-full cursor-pointer">
                     <h2 className="text-xl font-bold m-auto">Y</h2>
                 </div>
-                {/* 
-                    <div className="absolute right-0 mt-2 z-10 p-3 bg-secondary-light text-light rounded-lg">
-                        Dropdown
-                    </div> 
-                */}
+                {
+                    toggle ? <div onClick={() => logout()} className="absolute cursor-pointer right-2 mt-2 rounded-tr-none z-10 p-3 bg-secondary-light text-light rounded-lg">
+                        Logout
+                    </div> : ""
+                }
+                 
+            
             </div>
         </div>
     </nav>
