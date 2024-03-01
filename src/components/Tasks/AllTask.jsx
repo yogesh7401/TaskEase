@@ -48,7 +48,7 @@ export default function AllTask() {
                 </div> : <div className="flex flex-col gap-2 mt-5">
                 {
                     tasks.length > 0 ? tasks.map(task => {
-                        return <TaskAccordian collapseAll={collapseAll} key={task.id} task={task}/>
+                        return <TaskAccordian type='all' collapseAll={collapseAll} key={task.id} task={task}/>
                     }) : <div className="h-20 w-full flex">
                         <div className="flex flex-wrap m-auto gap-5">
                             <p className="m-auto text-lg text-light bg-secondary-light p-1 px-3 rounded-lg">Nothing to show</p> 

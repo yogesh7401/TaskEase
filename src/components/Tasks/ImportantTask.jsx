@@ -22,7 +22,7 @@ export default function ImportantTask() {
         .catch(e => {
             console.log(e);
         })
-    }, [])
+    }, [user.uid])
 
     return <div className="h-full bg-light p-5 sm:px-10 mx-3 sm:mx-5 lg:mx-10 shadow-md">
         <div className="flex justify-between">
@@ -48,7 +48,7 @@ export default function ImportantTask() {
                 </div> : <div className="flex flex-col gap-2 mt-8">
                 {
                     tasks.map(task => {
-                        return task.isImportant ? <TaskAccordian collapseAll={collapseAll} key={task.taskName} task={task}/> : ''
+                        return task.isImportant ? <TaskAccordian type='important' collapseAll={collapseAll} key={task.taskName} task={task}/> : ''
                     })
                 }
             </div>

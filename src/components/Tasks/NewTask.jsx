@@ -121,7 +121,7 @@ export default function NewTask() {
                     onChange={(e) => handleChange(e)} 
                     type="date" 
                     name="startDate" 
-                    value={NewTask.startDate} 
+                    value={newTask.startDate} 
                     id="startDate" 
                     required/>
             </div>
