@@ -107,7 +107,7 @@ export default function TaskAccordian(props) {
         })
     }
 
-    return props.type === 'important' && task.isImportant === 'false' ? '' : task ?
+    return props.type === 'important' && task?.isImportant === 'false' ? '' : task ?
     <div className="shadow-lg" key={task.id} >
         <div className={`${accordianTitle} ${isOpen ? "rounded-b-none bg-secondary" : 'bg-secondary-light'}`} onClick={() => { setIsOpen(!isOpen) }}>
             <h3 className="cursor-pointer my-auto mr-5">{ task.taskName }</h3>

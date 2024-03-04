@@ -48,7 +48,9 @@ export default function ImportantTask() {
                 </div> : <div className="flex flex-col gap-2 mt-8">
                 {
                     tasks.map(task => {
-                        return task.isImportant ? <TaskAccordian type='important' collapseAll={collapseAll} key={task.taskName} task={task}/> : ''
+                        return task.isImportant ? 
+                                <TaskAccordian type='important' collapseAll={collapseAll} key={task.taskName} task={task}/> 
+                                : '' 
                     })
                 }
             </div>

@@ -1,3 +1,5 @@
+import { useEffect, useRef } from "react";
+
 /* eslint-disable react/prop-types */
 export default function TaskMenu(props) {
     const menuClass = "py-2 px-4 rounded-lg cursor-pointer"
@@ -17,8 +19,24 @@ export default function TaskMenu(props) {
             key  : "Important"
         }
     ]
+    const dropdownRef = useRef(null);
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+          if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+            props.setToggle(false);
+          }
+        };
+    
+        document.addEventListener('mousedown', handleClickOutside);
+    
+        return () => {
+          document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [dropdownRef, props]);
+
     return <div className={`flex-none absolute py-5 shadow-lg md:shadow-none -mt-5 md:mt-0 md:relative bg-primary-light md:bg-transparent p-3 md:p-0 md:w-full md:max-w-44 mx-5 md:mx-0 ${ props.toggle ? "block" : "hidden md:block"}`}>
-    <ul className="text-lg flex-col">
+    <ul className="text-lg flex-col" ref={dropdownRef}>
         {
             menuItems.map(menuItem => {
                 return <li 

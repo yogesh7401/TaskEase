@@ -61,7 +61,7 @@ export default function NewTask() {
             createdDateTime: Timestamp.now(), 
             startDate: startDate,
             dueDate: newTask.dueDate !== "" ? dueDate : startDate,
-            isImportant: newTask.isImportant === "true",
+            isImportant: newTask.isImportant,
             user: user.uid
         })
         .then(() => {
