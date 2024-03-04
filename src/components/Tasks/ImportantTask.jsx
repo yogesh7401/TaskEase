@@ -49,8 +49,8 @@ export default function ImportantTask() {
                 {
                     tasks.map(task => {
                         return task.isImportant ? 
-                                <TaskAccordian type='important' collapseAll={collapseAll} key={task.taskName} task={task}/> 
-                                : '' 
+                            <TaskAccordian type='important' collapseAll={collapseAll} key={task.taskName} task={task}/> 
+                            : '' 
                     })
                 }
             </div>

@@ -4,6 +4,7 @@ import { db } from "../../../firebase";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import Loader from "../Loader";
 import { useAuth } from "../Authentication/AuthProvider";
+import NothingToShow from "../NothingToShow";
 
 export default function AllTask() {
     const [ tasks, setTasks ] = useState([])
@@ -49,11 +50,7 @@ export default function AllTask() {
                 {
                     tasks.length > 0 ? tasks.map(task => {
                         return <TaskAccordian type='all' collapseAll={collapseAll} key={task.id} task={task}/>
-                    }) : <div className="h-20 w-full flex">
-                        <div className="flex flex-wrap m-auto gap-5">
-                            <p className="m-auto text-lg text-light bg-secondary-light p-1 px-3 rounded-lg">Nothing to show</p> 
-                        </div>
-                    </div>
+                    }) : <NothingToShow />
                 }
             </div>
         }
