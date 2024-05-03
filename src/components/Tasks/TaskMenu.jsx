@@ -35,8 +35,8 @@ export default function TaskMenu(props) {
         };
     }, [dropdownRef, props]);
 
-    return <div className={`flex-none absolute py-5 shadow-lg md:shadow-none -mt-5 md:mt-0 md:relative bg-primary-light md:bg-transparent p-3 md:p-0 md:w-full md:max-w-44 mx-5 md:mx-0 ${ props.toggle ? "block" : "hidden md:block"}`}>
-    <ul className="text-lg flex-col" ref={dropdownRef}>
+    return <div className={`flex-none absolute py-3 shadow-lg md:shadow-none -mt-5 md:mt-0 md:relative bg-primary-light md:bg-transparent px-2 md:p-0 md:w-full md:max-w-44 mx-5 md:mx-0 ${ props.toggle ? "block" : "hidden md:block"}`}>
+    <ul className="text-base flex-col" ref={dropdownRef}>
         {
             menuItems.map(menuItem => {
                 return <li 

@@ -15,7 +15,7 @@ export default function TaskAccordian(props) {
         startDate: formatDate(props.task.startDate) 
     })
 
-    const labelClass = "text-primary-light text-sm"
+    const labelClass = "text-primary-light text-xs md:text-sm"
     const inputClass = "border p-2 w-full rounded-md focus:outline-none"
     const accordianTitle = "w-full text-light cursor-pointer p-3 rounded-md flex justify-between text-sm my-auto"
     const accordianDesc = "w-full bg-white text-black p-3 rounded-b-md flex flex-col gap-3 text-sm text-gray-800"

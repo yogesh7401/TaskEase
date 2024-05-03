@@ -1,7 +1,7 @@
 import { useAuth } from "./components/Authentication/AuthProvider";
-import Login from "./components/Authentication/Login";
+import Login from "./components/Pages/Login";
 import Loader from "./components/Loader";
-import Register from "./components/Authentication/Register";
+import Register from "./components/Pages/Register";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from "./components/Layout/Layout";
 import ProtectedRoute from "./components/Authentication/ProtectedRoute";

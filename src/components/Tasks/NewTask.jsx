@@ -16,7 +16,7 @@ export default function NewTask() {
 
     const { user } = useAuth()
 
-    const labelClass = "text-primary-light text-sm"
+    const labelClass = "text-primary-light text-xs md:text-sm"
     const inputClass = "p-2 w-full rounded-md focus:outline-none"
 
     function handleChange(event) {
@@ -71,7 +71,7 @@ export default function NewTask() {
     }
 
     return <div className="h-full bg-light p-5 sm:px-10 mx-3 sm:mx-5 lg:mx-10 shadow-md">
-        <p className="text-primary font-bold text-3xl">Add new task</p>
+        <p className="text-primary font-bold text-2xl">Add new task</p>
         <small className="text-red-500">{ errorMessage }</small>
         <form className="grid grid-cols-2 gap-5 my-5 text-gray-600" method="POST" onSubmit={(e) => handleSubmit(e)}>
             <div>
@@ -165,8 +165,9 @@ export default function NewTask() {
                     </div>
                 </div>
             </div>
-            <div className="flex flex-row-reverse text-light">
+            <div className="flex flex-row-reverse gap-4 text-light">
                 <button value={"submit"} className={`p-2 rounded-md focus:outline-none mt-5 bg-primary-light hover:bg-primary !w-20`}>Create</button>
+                {/* <div onClick={() => false} className={`p-2 px-4 rounded-md focus:outline-none mt-5 cursor-pointer bg-secondary-light hover:bg-secondary`}> <span className="font-bold text-xl mr-1">+</span> Add Sub Task</div> */}
             </div>
         </form>
     </div>

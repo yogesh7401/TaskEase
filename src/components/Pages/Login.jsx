@@ -1,6 +1,6 @@
 // Login.js
 import { useEffect, useState } from "react";
-import { useAuth } from "./AuthProvider";  
+import { useAuth } from "../Authentication/AuthProvider";  
 import { useNavigate } from "react-router-dom" 
 
 function Login() {

@@ -25,7 +25,7 @@ export default function TaskDashboard(props) {
 
   return <div className="container pt-10 mx-auto md:flex">
     <TaskMenu  toggle={props.toggle} setToggle={props.setToggle} selectedItem={selectedItem} setSelectedItem={setSelectedItem} />
-    <div className="flex-1 mb-10">
+    <div className="flex-1 mb-10 mx-3">
       {
         renderPage(selectedItem)
       }

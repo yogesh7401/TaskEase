@@ -27,7 +27,7 @@ export default function AllTask() {
 
     return <div className="h-full bg-light p-5 sm:px-10 mx-3 sm:mx-5 lg:mx-10 shadow-md">
         <div className="flex justify-between">
-            <p className="text-primary font-bold text-3xl">All tasks</p>
+            <p className="text-primary font-bold text-2xl">All tasks</p>
             {
                 tasks.length > 0 ? <>
                     {/* collapse */}

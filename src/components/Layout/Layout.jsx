@@ -1,6 +1,6 @@
 import { useState } from "react"
 import Header from "../Header"
-import TaskDashboard from "../Dashboard/TaskDashboard"
+import TaskDashboard from "../Pages/TaskDashboard"
 
 export default function Layout() {
     const [ toggle, setToggle ] = useState(false)
